@@ -39,11 +39,12 @@ The basic required options to pass for the actions to get created.
 
 Below can be set on the options:
 
-- endpoint (string): The request endpoint to call
-- types (Array): As explained by redux-api-middleware, same format is requested
-  here.
-- method (string): HTTP method to issue the request with
-- body: HTTP request body to send to the request url
+- **endpoint (string)**: The request endpoint to call
+- **types (Array)**: As explained by redux-api-middleware, same format is
+  requested here.
+- **method (string)**: HTTP method to issue the request with
+- **body (object)**: HTTP request body to send to the request url
+- **headers (object)**: HTTP request headers be sent with the request
 
 ```js
 import reduxApiMiddlewareBroker from "redux-api-middleware-broker";
@@ -79,6 +80,30 @@ const action = reduxApiMiddlewareBroker(
 );
 ```
 
+#### onRequestComplete: function
+
+Default: `() => {}`
+
+A notifier or similar. You can set cache, clear cache etc using this function.
+
+It receives the following params:
+
+- _action_ => The action that triggered the request
+- _state_ => The previous state of the reducer
+- _response_ => XHR response object
+
+```js
+const action = reduxApiMiddlewareBroker(
+  {
+    types: [MAIN_ACTION_TYPE, SUCCESS_ACTION_TYPE, ERROR_ACTION_TYPE],
+    method: "GET",
+    endpoint: `/users`
+  },
+  false,
+  (action, state, response) => console.log({ action, state, response })
+);
+```
+
 #### preprocessResult: function
 
 Default: `() => {}`
@@ -95,6 +120,7 @@ const action = reduxApiMiddlewareBroker(
     endpoint: `/users`
   },
   false,
+  () => {},
   json => {
     json.date = Date.now();
     return json;
