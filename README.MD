@@ -1,0 +1,103 @@
+# redux-api-middleware-broker
+
+Have you seen the docs of (Redux API
+Middleware)[https://www.npmjs.com/package/redux-api-middleware]? I am very sure
+you love the concept of the library creator, right? Did you see how to construct
+a basic actions? Have you tried uploading a file with an action but can't find
+it to work? You wanted more from the middleware but can't have to look throught
+the docs every now and then?
+
+Well, you can ride on this broker, that interracts between you and a few of JS
+lines to produce an action that is redux-api-middleware understands.
+
+You can go way basic like this to ask for an action to be created for
+`GET /users`:
+
+```js
+import reduxApiMiddlewareBroker from "redux-api-middleware-broker";
+
+const action = reduxApiMiddlewareBroker({
+  types: [MAIN_ACTION_TYPE, SUCCESS_ACTION_TYPE, ERROR_ACTION_TYPE],
+  method: "GET",
+  endpoint: `/users`
+});
+
+dispatch(action);
+```
+
+## Docs
+
+### Parameters
+
+#### options: object
+
+The basic required options to pass for the actions to get created.
+
+Below can be set on the options:
+
+- endpoint (string): The request endpoint to call
+- types (Array): As explained by redux-api-middleware, same format is requested
+  here.
+- method (string): HTTP method to issue the request with
+- body: HTTP request body to send to the request url
+
+```js
+import reduxApiMiddlewareBroker from "redux-api-middleware-broker";
+
+const action = reduxApiMiddlewareBroker({
+  types: [MAIN_ACTION_TYPE, SUCCESS_ACTION_TYPE, ERROR_ACTION_TYPE],
+  method: "POST",
+  endpoint: `/users`,
+  body: { name: "Aleem Isiaka" }
+});
+
+dispatch(action);
+```
+
+#### isFileUpload: boolean
+
+Default: `false`
+
+To determine if the request is a file upload. This is required for proper file
+upload handling.
+
+**A call to a file upload endpoint without this would fail.**
+
+```js
+const action = reduxApiMiddlewareBroker(
+  {
+    types: [MAIN_ACTION_TYPE, SUCCESS_ACTION_TYPE, ERROR_ACTION_TYPE],
+    method: "POST",
+    endpoint: `/files`,
+    body: file // file to be uplaoded here
+  },
+  true
+);
+```
+
+#### preprocessResult: function
+
+Default: `() => {}`
+
+A function to preprocess the received result after a successful requests.
+
+The function receives a JSON, and expects JSON to be returned as well
+
+```js
+const action = reduxApiMiddlewareBroker(
+  {
+    types: [MAIN_ACTION_TYPE, SUCCESS_ACTION_TYPE, ERROR_ACTION_TYPE],
+    method: "GET",
+    endpoint: `/users`
+  },
+  false,
+  json => {
+    json.date = Date.now();
+    return json;
+  }
+);
+```
+
+## License
+
+MIT
