@@ -12,12 +12,14 @@ const plugins = [
 ];
 const types = ["iife", "iife.min", "cjs", "cjs.min", "umd", "umd.min"];
 export default types.map(type => {
+  const _type = type.split(".");
   const _useUglify = type.includes("min") ? [uglify()] : [];
+
   return {
     input: "src/index.js",
     output: {
-      file: `./dist/${type}/index.js`,
-      format: type.split(".")[0],
+      file: `./dist/${_type[0]}/index${_type[1] || ""}.js`,
+      format: _type[0],
       name: "bundle"
     },
     plugins: [...plugins, ..._useUglify]
