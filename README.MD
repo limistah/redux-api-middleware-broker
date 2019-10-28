@@ -1,13 +1,17 @@
 # redux-api-middleware-broker
 
 Have you seen the docs of
-[Redux API Middleware](https://www.npmjs.com/package/redux-api-middleware)? I am
-very sure you love the concept of the library creator, right? Did you see how to
-construct a basic actions? Have you tried uploading a file with an action but
-can't find it to work? You wanted more from the middleware but can't have to
-look throught the docs every now and then?
+[Redux API Middleware](https://www.npmjs.com/package/redux-api-middleware)?
 
-Well, you can ride on this broker, that interracts between you and a few of JS
+I am very sure you love the concept of the library creator, right?
+
+Did you see how to construct a basic actions? Have you tried uploading a file
+with an action but can't find it to work?
+
+You wanted more from the middleware but can't have to look throught the docs
+every now and then?
+
+Well, you can ride on this broker, that interacts between you and a few of JS
 lines to produce an action that is redux-api-middleware understands.
 
 You can go way basic like this to ask for an action to be created for
