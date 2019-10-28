@@ -89,7 +89,6 @@
     var preprocessResult = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : function (json) {
       return json;
     };
-    var RSAA$1 = RSAA;
     var types = options.types;
     var _types = [types[0], {
       type: types[1],
@@ -118,7 +117,7 @@
       }
     }];
     var body = isFileUpload ? options.body : JSON.stringify(options.body);
-    return _defineProperty({}, RSAA$1, {
+    return _defineProperty({}, RSAA, {
       endpoint: options.endpoint || "",
       method: options.method || "GET",
       types: options.types ? _types : [],

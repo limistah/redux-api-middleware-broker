@@ -1,4 +1,4 @@
-import * as reduxApiMiddleware from "redux-api-middleware";
+import { RSAA } from "redux-api-middleware";
 
 export default (
   options = { endpoint: "/", types: [], method: "GET", body: {}, headers: {} },
@@ -6,7 +6,6 @@ export default (
   onRequestComplete = () => {},
   preprocessResult = json => json
 ) => {
-  var RSAA = reduxApiMiddleware.RSAA;
   const { types } = options;
   const _types = [
     types[0],
