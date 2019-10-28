@@ -5,7 +5,7 @@
   "description": "Eases the creation of redux-api-middleware action.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup --config --environment BUILD:production"
+    "build": "rm -rf ./dist && rollup --config --environment BUILD:production"
   },
   "repository": {
     "type": "git",
