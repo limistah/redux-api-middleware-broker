@@ -1,11 +1,12 @@
-export default broker;
+import * as reduxApiMiddleware from "redux-api-middleware";
 
-var broker = function(
+export default (
   options = { endpoint: "/", types: [], method: "GET", body: {}, headers: {} },
   isFileUpload = false,
   onRequestComplete = () => {},
   preprocessResult = json => json
-) {
+) => {
+  var RSAA = reduxApiMiddleware.RSAA;
   const { types } = options;
   const _types = [
     types[0],

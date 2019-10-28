@@ -63,7 +63,16 @@ function _objectSpread2(target) {
   return target;
 }
 
-var broker = function broker() {
+/**
+ * String key that carries API call info interpreted by this Redux middleware.
+ *
+ * @constant {string}
+ * @access public
+ * @default
+ */
+const RSAA = '@@redux-api-middleware/RSAA';
+
+var index = (function () {
   var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
     endpoint: "/",
     types: [],
@@ -76,6 +85,7 @@ var broker = function broker() {
   var preprocessResult = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : function (json) {
     return json;
   };
+  var RSAA$1 = RSAA;
   var types = options.types;
   var _types = [types[0], {
     type: types[1],
@@ -104,13 +114,13 @@ var broker = function broker() {
     }
   }];
   var body = isFileUpload ? options.body : JSON.stringify(options.body);
-  return _defineProperty({}, RSAA, {
+  return _defineProperty({}, RSAA$1, {
     endpoint: options.endpoint || "",
     method: options.method || "GET",
     types: options.types ? _types : [],
     headers: _objectSpread2({}, _typeof(optoins.headers) === "object" ? options.headers : {}),
     body: body
   });
-};
+});
 
-module.exports = broker;
+module.exports = index;

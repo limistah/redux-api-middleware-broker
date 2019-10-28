@@ -2,7 +2,7 @@
 import resolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
 import babel from "rollup-plugin-babel";
-import { uglify } from "rollup-plugin-uglify";
+import { terser } from "rollup-plugin-terser";
 const plugins = [
   resolve(),
   commonjs(),
@@ -19,12 +19,12 @@ export default [
       format: "cjs",
       name: "bundle"
     },
-    plugins: [...plugins, uglify()]
+    plugins: [...plugins, terser()]
   }
 ].concat(
   types.map(type => {
     const _type = type.split(".");
-    const _useUglify = type.includes("min") ? [uglify()] : [];
+    const _useUglify = type.includes("min") ? [terser()] : [];
 
     return {
       input: "src/index.js",
