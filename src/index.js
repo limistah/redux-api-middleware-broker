@@ -1,44 +1,24 @@
 export default broker;
 
 var broker = function(
-  options,
-  isFileUpload,
-  onRequestComplete,
-  preprocessResult
+  options = { endpoint: "/", types: [], method: "GET", body: {}, headers: {} },
+  isFileUpload = false,
+  onRequestComplete = () => {},
+  preprocessResult = json => json
 ) {
-  options = options || {
-    endpoint: "/",
-    types: [],
-    method: "GET",
-    body: {},
-    headers: {}
-  };
-  isFileUpload = isFileUpload || false;
-  onRequestComplete =
-    typeof onRequestComplete === "function" ? onRequestComplete : function() {};
-
-  preprocessResult =
-    typeof preprocessResult === "function"
-      ? preprocessResult
-      : function(json) {
-          return json;
-        };
-
-  var types = options.types;
-  var _types = [
+  const { types } = options;
+  const _types = [
     types[0],
     {
       type: types[1],
-      payload: function(action, state, res) {
+      payload(action, state, res) {
         onRequestComplete(action, state, res);
-        return res.json().then(function(json) {
-          return preprocessResult(json);
-        });
+        return res.json().then(json => preprocessResult(json));
       }
     },
     {
       type: types[2],
-      meta: function(action, state, res) {
+      meta(action, state, res) {
         onRequestComplete(action, state, res);
         if (res) {
           return {
@@ -54,7 +34,7 @@ var broker = function(
       }
     }
   ];
-  var body = isFileUpload ? options.body : JSON.stringify(options.body);
+  const body = isFileUpload ? options.body : JSON.stringify(options.body);
   return {
     [RSAA]: {
       endpoint: options.endpoint || "",

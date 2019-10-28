@@ -73,25 +73,26 @@ function _objectSpread2(target) {
   return target;
 }
 
-var broker = function broker(
-  options,
-  isFileUpload,
-  onRequestComplete,
-  preprocessResult
-) {
-  options = options || {
-    endpoint: "/",
-    types: [],
-    method: "GET",
-    body: {},
-    headers: {}
-  };
-  isFileUpload = isFileUpload || false;
-  onRequestComplete =
-    typeof onRequestComplete === "function" ? onRequestComplete : function() {};
-  preprocessResult =
-    typeof preprocessResult === "function"
-      ? preprocessResult
+var broker = function broker() {
+  var options =
+    arguments.length > 0 && arguments[0] !== undefined
+      ? arguments[0]
+      : {
+          endpoint: "/",
+          types: [],
+          method: "GET",
+          body: {},
+          headers: {}
+        };
+  var isFileUpload =
+    arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  var onRequestComplete =
+    arguments.length > 2 && arguments[2] !== undefined
+      ? arguments[2]
+      : function() {};
+  var preprocessResult =
+    arguments.length > 3 && arguments[3] !== undefined
+      ? arguments[3]
       : function(json) {
           return json;
         };
