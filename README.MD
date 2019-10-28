@@ -31,6 +31,27 @@ dispatch(action);
 
 ## Docs
 
+This module exports a function that can be called as the only and default
+export.
+
+And should be called fully as follows
+
+```js
+import reduxApiMiddlewareBroker from "redux-api-middleware-broker";
+
+// Build the action using the broker shorthand 💪💪💪💪
+const action = reduxApiMiddlewareBroker(
+  options,
+  isFileUpload,
+  onRequestComplete,
+  preprocessResult
+);
+
+// Dispatch the built Redux API Middleware compatible action.
+// Hurray!!! 💃💃💃💃
+dispatch(action);
+```
+
 ### Parameters
 
 #### options: object
