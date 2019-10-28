@@ -11,17 +11,29 @@ const plugins = [
   })
 ];
 const types = ["iife", "iife.min", "cjs", "cjs.min", "umd", "umd.min"];
-export default types.map(type => {
-  const _type = type.split(".");
-  const _useUglify = type.includes("min") ? [uglify()] : [];
-
-  return {
+export default [
+  {
     input: "src/index.js",
     output: {
-      file: `./dist/${_type[0]}/index${_type[1] ? "." + _type[1] : ""}.js`,
-      format: _type[0],
+      file: `./dist/index.js`,
+      format: "cjs",
       name: "bundle"
     },
-    plugins: [...plugins, ..._useUglify]
-  };
-});
+    plugins: [...plugins, uglify()]
+  }
+].concat(
+  types.map(type => {
+    const _type = type.split(".");
+    const _useUglify = type.includes("min") ? [uglify()] : [];
+
+    return {
+      input: "src/index.js",
+      output: {
+        file: `./dist/${_type[0]}/index${_type[1] ? "." + _type[1] : ""}.js`,
+        format: _type[0],
+        name: "bundle"
+      },
+      plugins: [...plugins, ..._useUglify]
+    };
+  })
+);
