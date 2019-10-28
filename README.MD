@@ -8,11 +8,11 @@ I am very sure you love the concept of the library creator, right?
 Did you see how to construct a basic actions? Have you tried uploading a file
 with an action but can't find it to work?
 
-You wanted more from the middleware but can't have to look throught the docs
+You wanted more from the middleware but dan't have to look through the docs
 every now and then?
 
 Well, you can ride on this broker, that interacts between you and a few of JS
-lines to produce an action that is redux-api-middleware understands.
+lines to produce an action that redux-api-middleware understands.
 
 You can go way basic like this to ask for an action to be created for
 `GET /users`:
