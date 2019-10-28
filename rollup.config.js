@@ -16,7 +16,7 @@ export default types.map(type => {
   return {
     input: "src/index.js",
     output: {
-      file: `./dist/${type}.index.js`,
+      file: `./dist/${type}/index.js`,
       format: type.split(".")[0],
       name: "bundle"
     },
