@@ -85,12 +85,15 @@ The basic required options to pass for the actions to get created.
 
 Below can be set on the options:
 
-- **endpoint: String**: The request endpoint to call
-- **types: Array**: As explained by redux-api-middleware, same format is
+- **endpoint: string**: The request endpoint to call
+- **types: array**: As explained by redux-api-middleware, same format is
   requested here.
-- **method: String**: HTTP method to issue the request with
-- **body: Object**: HTTP request body to send to the request url
-- **headers: Object**: HTTP request headers be sent with the request
+- **method: string**: HTTP method to issue the request with
+- **body: object**: HTTP request body to send to the request url
+- **headers: object**: HTTP request headers be sent with the request
+- **credentials: string**: Whether or not to send cookies with the API call. Must be one of `omit`, `same-origin`, `include`.
+- **fetch: function**: A custom Fetch implementation.
+- **options: object**: The fetch options for the API call. 
 
 ```js
 import reduxApiMiddlewareBroker from "redux-api-middleware-broker";
@@ -152,11 +155,11 @@ const action = reduxApiMiddlewareBroker(
 
 #### preprocessResult: function
 
-**Default: `() => {}`**
+**Default: `json => json`**
 
-A function to preprocess the received result after a successful requests.
+A function to preprocess the received result after a successful request.
 
-The function receives a JSON, and expects JSON to be returned as well
+The function receives a JSON, and expects JSON to be returned as well.
 
 ```js
 const action = reduxApiMiddlewareBroker(

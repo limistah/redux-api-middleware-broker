@@ -1,7 +1,16 @@
 const { RSAA } = require("redux-api-middleware");
 
 const broker = (
-  options = { endpoint: "/", types: [], method: "GET", body: {}, headers: {} },
+  options = {
+    endpoint: "/",
+    types: [],
+    method: "GET",
+    body: {},
+    headers: {},
+    options: {},
+    credentials: {},
+    fetch: {}
+  },
   isFileUpload = false,
   onRequestComplete = () => {},
   preprocessResult = json => json
