@@ -1,6 +1,6 @@
 # redux-api-middleware-broker
 
-Have you seen the docs of
+Have you seen the docs for
 [Redux API Middleware](https://www.npmjs.com/package/redux-api-middleware)?
 
 You very sure must love the concept of the library creator, right? 😄😄😄
