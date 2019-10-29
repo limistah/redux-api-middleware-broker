@@ -1,6 +1,5 @@
-const fetch = () => {};
-global.fetch = fetch;
 const { RSAA } = require("redux-api-middleware");
+
 const broker = (
   options = { endpoint: "/", types: [], method: "GET", body: {}, headers: {} },
   isFileUpload = false,

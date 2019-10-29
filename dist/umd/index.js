@@ -67,8 +67,6 @@
     return target;
   }
 
-  var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
-
   /**
    * String key that carries API call info interpreted by this Redux middleware.
    *
@@ -657,9 +655,6 @@
     apiMiddleware: apiMiddleware
   });
 
-  var fetch$1 = function fetch() {};
-
-  commonjsGlobal.fetch = fetch$1;
   var RSAA$1 = es.RSAA;
 
   var broker = function broker() {
