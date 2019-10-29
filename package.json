@@ -1,7 +1,10 @@
 {
   "name": "redux-api-middleware-broker",
   "version": "1.0.0-0",
-  "main": "src/index.js",
+  "main": "./dist/index.js",
+  "files": [
+    "/dist"
+  ],
   "description": "Eases the creation of redux-api-middleware action.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
