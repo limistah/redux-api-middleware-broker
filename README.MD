@@ -3,16 +3,19 @@
 Have you seen the docs of
 [Redux API Middleware](https://www.npmjs.com/package/redux-api-middleware)?
 
-I am very sure you love the concept of the library creator, right?
+You very sure must love the concept of the library creator, right? 😄😄😄
 
-Did you see how to construct a basic actions? Have you tried uploading a file
-with an action but can't find it to work?
+Did you notice how to construct a basic action? 😞😞😞
 
-You wanted more from the middleware but dan't have to look through the docs
-every now and then?
+Have you tried uploading a file with an action but could not find it to work? 😞😞😞
 
-Well, you can ride on this broker, that interacts between you and a few of JS
-lines to produce an action that redux-api-middleware understands.
+You wanted more from the middleware but don't have to look through the docs
+every now and then? 😞😞😞
+
+### Solution? 😏😏😏
+
+Well, you can ride on this broker. 🚀🚀🚀
+It interacts between you and a few of JS lines to produce an action that `redux-api-middleware` understands.
 
 You can go way basic like this to ask for an action to be created for
 `GET /users`:
@@ -26,8 +29,30 @@ const action = reduxApiMiddlewareBroker({
   endpoint: `/users`
 });
 
+
+// const action = {
+//   "@@redux-api-middleware/RSAA": {
+//     endpoint: "/users",
+//     method: "GET",
+//     types: [
+//       "MAIN_ACTION_TYPE",
+//       { type: "SUCCESS_ACTION_TYPE" },
+//       { type: "ERROR_ACTION_TYPE" }
+//     ],
+//     headers: {}
+//   }
+// };
+
 dispatch(action);
 ```
+
+So.... you don't have to keep doing: 
+
+```js
+const { RSAA } = require("redux-api-middleware");
+```
+
+And likes...
 
 ## Docs
 
@@ -60,12 +85,12 @@ The basic required options to pass for the actions to get created.
 
 Below can be set on the options:
 
-- **endpoint (string)**: The request endpoint to call
-- **types (Array)**: As explained by redux-api-middleware, same format is
+- **endpoint: String**: The request endpoint to call
+- **types: Array**: As explained by redux-api-middleware, same format is
   requested here.
-- **method (string)**: HTTP method to issue the request with
-- **body (object)**: HTTP request body to send to the request url
-- **headers (object)**: HTTP request headers be sent with the request
+- **method: String**: HTTP method to issue the request with
+- **body: Object**: HTTP request body to send to the request url
+- **headers: Object**: HTTP request headers be sent with the request
 
 ```js
 import reduxApiMiddlewareBroker from "redux-api-middleware-broker";
@@ -74,7 +99,7 @@ const action = reduxApiMiddlewareBroker({
   types: [MAIN_ACTION_TYPE, SUCCESS_ACTION_TYPE, ERROR_ACTION_TYPE],
   method: "POST",
   endpoint: `/users`,
-  body: { name: "Aleem Isiaka" }
+  body: { name: "Aleem Isiaka", country: "Nigeria", state: "Lagos" }
 });
 
 dispatch(action);
@@ -82,7 +107,7 @@ dispatch(action);
 
 #### isFileUpload: boolean
 
-Default: `false`
+**Default: `false`**
 
 To determine if the request is a file upload. This is required for proper file
 upload handling.
@@ -103,7 +128,7 @@ const action = reduxApiMiddlewareBroker(
 
 #### onRequestComplete: function
 
-Default: `() => {}`
+**Default: `() => {}`**
 
 A notifier or similar. You can set cache, clear cache etc using this function.
 
@@ -127,7 +152,7 @@ const action = reduxApiMiddlewareBroker(
 
 #### preprocessResult: function
 
-Default: `() => {}`
+**Default: `() => {}`**
 
 A function to preprocess the received result after a successful requests.
 

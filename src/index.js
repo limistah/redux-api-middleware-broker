@@ -1,6 +1,7 @@
-import { RSAA } from "redux-api-middleware";
-
-export default (
+const fetch = () => {};
+global.fetch = fetch;
+const { RSAA } = require("redux-api-middleware");
+const broker = (
   options = { endpoint: "/", types: [], method: "GET", body: {}, headers: {} },
   isFileUpload = false,
   onRequestComplete = () => {},
@@ -10,6 +11,7 @@ export default (
   const _types = [
     types[0],
     {
+      // Success action
       type: types[1],
       payload(action, state, res) {
         onRequestComplete(action, state, res);
@@ -17,6 +19,7 @@ export default (
       }
     },
     {
+      // Failure mistake
       type: types[2],
       meta(action, state, res) {
         onRequestComplete(action, state, res);
@@ -35,15 +38,19 @@ export default (
     }
   ];
   const body = isFileUpload ? options.body : JSON.stringify(options.body);
+
+  // Constructs Redux API middleware compatible action
   return {
     [RSAA]: {
       endpoint: options.endpoint || "",
       method: options.method || "GET",
       types: options.types ? _types : [],
       headers: {
-        ...(typeof optoins.headers === "object" ? options.headers : {})
+        ...(typeof options.headers === "object" ? options.headers : {})
       },
       body
     }
   };
 };
+
+module.exports = broker;
