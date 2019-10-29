@@ -1,6 +1,6 @@
 {
   "name": "redux-api-middleware-broker",
-  "version": "0.0.1",
+  "version": "1.0.0-0",
   "main": "src/index.js",
   "description": "Eases the creation of redux-api-middleware action.",
   "scripts": {
